@@ -25,7 +25,7 @@ const Form = () => {
             <label htmlFor="title">Title</label>
                 <input
                 onChange={handleChange}
-                id="title"
+                id='title'
                 name="title"
                 value={formData.title}
                 className="border rounder-lg leading-tight focus:outline-none focus:shadow-outline py-2 px-3 m-1 text-gray-500 shadow appearance-none w-full"
@@ -42,7 +42,7 @@ const Form = () => {
                 <textarea 
                 onChange={handleChange}
                 id='body'
-                name="body"
+                name='body'
                 value={formData.body}
                 className="border rounder-lg leading-tight focus:outline-none focus:shadow-outline py-2 px-3 m-1 text-gray-500 shadow appearance-none w-full"
                 rows="10"
