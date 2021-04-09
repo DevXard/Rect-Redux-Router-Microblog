@@ -51,7 +51,7 @@ const PostVew = () => {
             <h3 className="text-base ">{postData.description}</h3>
             <p className="my-5 ">{postData.body}</p>
             <div>
-                <Comments handleComment={handleComment}/>
+                <Comments id={id} handleComment={handleComment}/>
             </div>
             </div>
             }
