@@ -1,12 +1,22 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
 
-const Form = () => {
+const Form = ({handleAddPost , edit, handleEdit}) => {
+    const history = useHistory();
 
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         body: ''
     });
+
+    useEffect(() =>{
+        if(edit){
+            setFormData({
+                ...edit
+            })
+        }
+    },[edit])
 
     const handleChange = e => {
         e.preventDefault();
@@ -17,10 +27,28 @@ const Form = () => {
         }))
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        if(!edit){
+            handleAddPost({...formData, comments: []})
+            history.push("/")
+        }else{
+            handleEdit({...formData})
+            history.push("/")
+        }
+        
+    }
+
+    const handleClick = e => {
+        e.preventDefault();
+        history.push("/")
+    }
     return(
         <div className="shadow rounded-lg">
             
-            <form className=" p-8">
+            <form 
+            onSubmit={handleSubmit}
+            className=" p-8">
             <h1 className="text-2xl">New Post</h1>
             <label htmlFor="title">Title</label>
                 <input
@@ -49,7 +77,7 @@ const Form = () => {
                 cols="50"
                 />
                 <button className='bg-blue-400 px-3 py-1 rounded mx-1'>Save</button>
-                <button className='bg-gray-400 px-3 py-1 rounded mx-1'>Cancel</button>
+                <button onClick={handleClick} className='bg-gray-400 px-3 py-1 rounded mx-1'>Cancel</button>
             </form>
         </div>
     )
