@@ -1,16 +1,17 @@
 // import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import EditPost from '../BlogForm/EditPost';
 import Comments from '../comments/Comments';
-import {addComment} from '../../actions/actions';
+import {addComment, deletePost} from '../../actions/actions';
 
 const PostVew = () => {
     const [edit, setEdit] = useState(false)
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const {id} = useParams();
     const post = useSelector(data => data)
@@ -23,6 +24,12 @@ const PostVew = () => {
 
     const handleComment = (comment) => {
         dispatch(addComment(id, comment))
+    }
+
+    const handleDelete = e => {
+        e.preventDefault();
+        dispatch(deletePost(id))
+        history.push("/")
     }
 
     if(edit) {
@@ -43,8 +50,8 @@ const PostVew = () => {
             <div className="flex  justify-between">
                 <h1 className="text-2xl  my-5">{postData.title}</h1>
                 <div className=" my-5 flex flex-row">
-                <button to="/" onClick={handleEdit} className="text-blue-500 mx-1" ><FaEdit /></button>
-                <button to="/" className="text-red-500 mx-1" ><FaTrashAlt /></button>
+                <button  onClick={handleEdit} className="text-blue-500 mx-1" ><FaEdit /></button>
+                <button onClick={handleDelete} className="text-red-500 mx-1" ><FaTrashAlt /></button>
                 </div>
                 
             </div>

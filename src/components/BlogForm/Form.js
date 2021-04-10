@@ -30,7 +30,7 @@ const Form = ({handleAddPost , edit, handleEdit}) => {
     const handleSubmit = e => {
         e.preventDefault();
         if(!edit){
-            handleAddPost({...formData, comments: []})
+            handleAddPost({...formData, comments:{}})
             history.push("/")
         }else{
             handleEdit({...formData})

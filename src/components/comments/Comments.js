@@ -7,7 +7,7 @@ const Comments = ({handleComment, id}) => {
 
     const [formData, setFormData] = useState('')
     const comments = useSelector(data => data[id].comments)
-    
+    console.log(comments)
 
     const handleChange = e => {
         e.preventDefault();
@@ -21,7 +21,7 @@ const Comments = ({handleComment, id}) => {
     return(
         <div className="border-t-2">
             <h1 className="text-2xl font-bold my-3">Comments</h1>
-            {comments.map(comment => <Comment data={comment} />)}
+            {Object.keys(comments).map(id => <Comment key={id} id={id} data={comments[id]} />)}
             <div>
                 <form onSubmit={handleSubmit}>
                     <input
