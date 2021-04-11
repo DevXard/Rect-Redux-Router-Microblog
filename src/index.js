@@ -5,10 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import thunk from 'redux-thunk';
+import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './reducers/rootReducer';
+import {fetchPosts} from './actions/thunks';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+store.dispatch(fetchPosts())
 
 ReactDOM.render(
   <React.StrictMode>
