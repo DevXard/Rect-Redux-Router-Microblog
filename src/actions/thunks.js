@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getPosts, getComments,addPost} from './actions'
+import {getPosts, getComments, addPost, editPost, deletePost} from './actions'
 
 const baseUrl = "http://localhost:5000"
 
@@ -33,6 +33,28 @@ export function addNewPost (data) {
             dispatch(addPost(res.data))
         }catch (e){
             console.log(e)
+        }
+    }
+}
+
+export function editExsistingPost (id, data) {
+    return async function (dispatch) {
+        try{
+            const res = await axios.put(`${baseUrl}/api/posts/${id}`, data)
+            dispatch(editPost(id, res.data))
+        }catch(e){
+            console.log("EDDIT", e)
+        }
+    }
+}
+
+export function deletePostApi(id){
+    return async function (dispatch) {
+        try{
+            await axios.delete(`${baseUrl}/api/posts/${id}`)
+            dispatch(deletePost(id))
+        }catch(e){
+            console.log("DELETE", e)
         }
     }
 }

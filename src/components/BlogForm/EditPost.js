@@ -1,12 +1,12 @@
 import Form from './Form';
-import {editPost} from '../../actions/actions';
+import {editExsistingPost} from '../../actions/thunks';
 import {useDispatch} from 'react-redux';
 
 const CreateNewPost = ({edit, id}) => {
     const dispatch = useDispatch();
 
     const handleEdit = (newData) => {
-        dispatch(editPost(id, newData))
+        dispatch(editExsistingPost(id, newData))
     }
     return(
         <Form edit={edit} handleEdit={handleEdit} />

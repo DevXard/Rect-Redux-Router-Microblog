@@ -21,11 +21,19 @@ export function addPost(payload){
     }
 }
 
-export function editPost(id, newData){
+export function editPost(id, payload){
     return{
         type: EDIT_POST,
         id,
-        newData
+        payload
+    }
+}
+
+export function deletePost(id){
+
+    return{
+        type: DELETE_POST,
+        id
     }
 }
 
@@ -35,14 +43,6 @@ export function addComment(id, comment){
         type: ADD_COMMENT,
         id,
         comment
-    }
-}
-
-export function deletePost(id){
-
-    return{
-        type: DELETE_POST,
-        id
     }
 }
 

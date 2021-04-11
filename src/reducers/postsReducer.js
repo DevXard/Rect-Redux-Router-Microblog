@@ -1,5 +1,5 @@
 
-import {ADD_POST, EDIT_POST, ADD_COMMENT, DELETE_POST, DELETE_COMMENT, GET_POSTS} from "../actions/actionTypes";
+import {ADD_POST, DELETE_POST, GET_POSTS} from "../actions/actionTypes";
 const INITIAL_VALUE = []
 
 
@@ -10,6 +10,11 @@ function postsReducer(state=INITIAL_VALUE, action){
             return [...state, ...action.payload]
         case ADD_POST:
             return [...state, {...action.payload}]
+        case DELETE_POST:
+            console.log(action.id)
+            const newState = state.filter(({id}) => id != action.id)
+            console.log(newState)
+            return [...newState]
         default:
             return state;
     }
