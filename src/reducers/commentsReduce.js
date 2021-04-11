@@ -1,7 +1,7 @@
 import {GET_COMMENTS} from '../actions/actionTypes';
 const INITIAL_STATE = {}
 
-function commentsReducer(state=INITIAL_STATE, action) {
+function withCommentsReducer(state=INITIAL_STATE, action) {
     console.log("COMMENTS", state)
     switch(action.type) {
         case GET_COMMENTS:
@@ -11,4 +11,4 @@ function commentsReducer(state=INITIAL_STATE, action) {
     }
 }
 
-export default commentsReducer;
+export default withCommentsReducer;

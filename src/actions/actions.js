@@ -14,10 +14,10 @@ export function getPosts(payload){
     }
 }
 
-export function addPost(data){
+export function addPost(payload){
     return{
         type: ADD_POST,
-        payload: data
+        payload
     }
 }
 

@@ -1,12 +1,12 @@
 import {useDispatch} from 'react-redux';
 
-import { addPost} from '../../actions/actions';
+import { addNewPost} from '../../actions/thunks';
 import Form from './Form';
 
 const CreateNewPost = () => {
 
     const dispatch = useDispatch();
-    const handleAddPost = (data) => dispatch(addPost(data))
+    const handleAddPost = (data) => dispatch(addNewPost(data))
     return(
         <Form handleAddPost={handleAddPost} />
     )
