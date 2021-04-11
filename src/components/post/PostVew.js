@@ -1,21 +1,26 @@
 // import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import EditPost from '../BlogForm/EditPost';
 import Comments from '../comments/Comments';
 import {addComment, deletePost} from '../../actions/actions';
+import { fetchWithComments} from '../../actions/thunks';
 
 const PostVew = () => {
     const [edit, setEdit] = useState(false)
     const dispatch = useDispatch();
     const history = useHistory();
-
     const {id} = useParams();
-    const post = useSelector(data => data)
-    const postData = post[id]
+
+    useEffect(() =>{
+        dispatch(fetchWithComments(id))
+    },[id, dispatch])
+
+    
+    const postData = useSelector(data => data.comments)
 
     const handleEdit = e => {
         e.preventDefault();
@@ -58,7 +63,7 @@ const PostVew = () => {
             <h3 className="text-base ">{postData.description}</h3>
             <p className="my-5 ">{postData.body}</p>
             <div>
-                <Comments id={id} handleComment={handleComment}/>
+                <Comments id={id} data={postData.comments} handleComment={handleComment}/>
             </div>
             </div>
             }

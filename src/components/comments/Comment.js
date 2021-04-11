@@ -1,6 +1,6 @@
 
 const Comment = ({data, handleDeleteComment, id}) => {
-
+    
     const handleClick = () => {
         handleDeleteComment(id)
     }

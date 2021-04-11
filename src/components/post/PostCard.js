@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 
 const PostCard = ({data, id}) => {
-    
+        
     return (
         <div className="bg-white shadow mt-3 rounded-lg">
             <Link to={`/${id}`} >

@@ -1,4 +1,11 @@
-import {ADD_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT, DELETE_POST, GET_POSTS} from './actionTypes';
+import {ADD_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT, DELETE_POST, GET_POSTS, GET_COMMENTS} from './actionTypes';
+
+export function getComments( payload){
+    return{
+        type:GET_COMMENTS,
+        payload
+    }
+}
 
 export function getPosts(payload){
     return{

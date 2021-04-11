@@ -1,13 +1,13 @@
 import {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Comment from './Comment';
 import {deleteComment} from '../../actions/actions';
 
-const Comments = ({handleComment, id}) => {
+const Comments = ({handleComment, data, id}) => {
 
     const [formData, setFormData] = useState('')
-    const comments = useSelector(data => data[id].comments)
+    
     const dispatch = useDispatch();
 
     const handleChange = e => {
@@ -24,15 +24,19 @@ const Comments = ({handleComment, id}) => {
     const handleDeleteComment = (commentId) => {
         dispatch(deleteComment(id, commentId))
     }
+    if(!data){
+        return(
+            <div>Loading...</div>
+        )
+    }
 
     return(
         <div className="border-t-2">
             <h1 className="text-2xl font-bold my-3">Comments</h1>
-            {Object.keys(comments).map(id => 
+            {data.map(comment => 
                 <Comment 
-                    key={id} id={id} 
-                    handleDeleteComment={handleDeleteComment}  
-                    data={comments[id]} 
+                key={comment.id}
+                data={comment.text}
                 />)}
             <div>
                 <form onSubmit={handleSubmit}>
@@ -50,3 +54,4 @@ const Comments = ({handleComment, id}) => {
 }
 
 export default Comments; 
+
