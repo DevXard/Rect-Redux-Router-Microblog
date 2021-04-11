@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 
 import Comment from './Comment';
-import {deleteComment} from '../../actions/actions';
+import {deleteCommentApi} from '../../actions/thunks';
 
 const Comments = ({handleComment, data, id}) => {
 
@@ -22,7 +22,7 @@ const Comments = ({handleComment, data, id}) => {
     }
 
     const handleDeleteComment = (commentId) => {
-        dispatch(deleteComment(id, commentId))
+        dispatch(deleteCommentApi(id, commentId))
     }
     if(!data){
         return(
@@ -35,6 +35,8 @@ const Comments = ({handleComment, data, id}) => {
             <h1 className="text-2xl font-bold my-3">Comments</h1>
             {data.map(comment => 
                 <Comment 
+                handleDeleteComment={handleDeleteComment}
+                id={comment.id}
                 key={comment.id}
                 data={comment.text}
                 />)}

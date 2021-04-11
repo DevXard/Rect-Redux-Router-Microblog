@@ -46,11 +46,10 @@ export function addComment(id, payload){
     }
 }
 
-export function deleteComment(postId, commentId){
+export function deleteComment( commentId){
 
     return {
         type: DELETE_COMMENT,
-        postId,
         commentId
     }
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getPosts, getComments, addPost, editPost, deletePost, addComment} from './actions'
+import {getPosts, getComments, addPost, editPost, deletePost, addComment, deleteComment} from './actions'
 
 const baseUrl = "http://localhost:5000"
 
@@ -66,6 +66,17 @@ export function addCommentApi(id, data){
             const res = await axios.post(`${baseUrl}/api/posts/${id}/comments`, {text: data})
             
             dispatch(addComment(id, res.data))
+        }catch(e){
+            console.log(e)
+        }
+    }
+}
+
+export function deleteCommentApi(postId, commentId){
+    return async function (dispatch) {
+        try{
+            await axios.delete(`${baseUrl}/api/posts/${postId}/comments/${commentId}`)
+            dispatch(deleteComment(commentId))
         }catch(e){
             console.log(e)
         }
