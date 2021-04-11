@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getPosts, getComments, addPost, editPost, deletePost} from './actions'
+import {getPosts, getComments, addPost, editPost, deletePost, addComment} from './actions'
 
 const baseUrl = "http://localhost:5000"
 
@@ -18,7 +18,7 @@ export function fetchWithComments (id) {
     return async function (dispatch) {
         try {
             let res = await axios.get(`${baseUrl}/api/posts/${id}`)
-            console.log(res)
+            
             dispatch(getComments(res.data))
         }catch (e) {
             console.log(e)
@@ -55,6 +55,19 @@ export function deletePostApi(id){
             dispatch(deletePost(id))
         }catch(e){
             console.log("DELETE", e)
+        }
+    }
+}
+
+export function addCommentApi(id, data){
+    console.log("Comment", id, data)
+    return async function (dispatch) {
+        try{
+            const res = await axios.post(`${baseUrl}/api/posts/${id}/comments`, {text: data})
+            
+            dispatch(addComment(id, res.data))
+        }catch(e){
+            console.log(e)
         }
     }
 }

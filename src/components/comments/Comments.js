@@ -17,7 +17,7 @@ const Comments = ({handleComment, data, id}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleComment(formData)
+        handleComment(id, formData)
         setFormData('')
     }
 

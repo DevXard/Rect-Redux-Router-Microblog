@@ -6,8 +6,8 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import EditPost from '../BlogForm/EditPost';
 import Comments from '../comments/Comments';
-import { deletePostApi} from '../../actions/thunks';
-import { fetchWithComments} from '../../actions/thunks';
+import { deletePostApi, fetchWithComments, addCommentApi} from '../../actions/thunks';
+
 
 const PostVew = () => {
     const [edit, setEdit] = useState(false)
@@ -21,15 +21,16 @@ const PostVew = () => {
 
     
     const postData = useSelector(data => data.comments)
-
+    // console.log(postData)
     const handleEdit = e => {
         e.preventDefault();
         setEdit(data => !data)
     }
 
-    // const handleComment = (comment) => {
-    //     dispatch(addComment(id, comment))
-    // }
+    const handleComment = (id, comment) => {
+        
+        dispatch(addCommentApi(id, comment))
+    }
 
     const handleDelete = e => {
         e.preventDefault();
@@ -63,7 +64,7 @@ const PostVew = () => {
             <h3 className="text-base ">{postData.description}</h3>
             <p className="my-5 ">{postData.body}</p>
             <div>
-                <Comments id={id} data={postData.comments}/>
+                <Comments id={id} data={postData.comments} handleComment={handleComment}/>
             </div>
             </div>
             }

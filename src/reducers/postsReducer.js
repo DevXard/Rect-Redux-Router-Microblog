@@ -4,16 +4,16 @@ const INITIAL_VALUE = []
 
 
 function postsReducer(state=INITIAL_VALUE, action){
-    console.log(state)
+    
     switch(action.type){
         case GET_POSTS:
             return [...state, ...action.payload]
         case ADD_POST:
             return [...state, {...action.payload}]
         case DELETE_POST:
-            console.log(action.id)
+            
             const newState = state.filter(({id}) => id != action.id)
-            console.log(newState)
+            
             return [...newState]
         default:
             return state;
